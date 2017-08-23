@@ -17,12 +17,11 @@
 
 package org.connectbot;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
-
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Bundle;
@@ -41,13 +40,26 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.connectbot.bean.AgentBean;
 import org.connectbot.bean.HostBean;
 import org.connectbot.transport.SSH;
 import org.connectbot.transport.Telnet;
 import org.connectbot.transport.TransportFactory;
+import org.connectbot.util.AgentDatabase;
 import org.connectbot.util.HostDatabase;
 import org.connectbot.views.CheckableMenuItem;
+import org.openintents.ssh.SSHAgentApiConstants;
+
+import java.security.KeyFactory;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.X509EncodedKeySpec;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
 
 public class HostEditorFragment extends Fragment {
 
@@ -57,6 +69,9 @@ public class HostEditorFragment extends Fragment {
 	private static final String ARG_PUBKEY_NAMES = "pubkeyNames";
 	private static final String ARG_PUBKEY_VALUES = "pubkeyValues";
 	private static final String ARG_QUICKCONNECT_STRING = "quickConnectString";
+
+	// Requestcode when executing startActivityForResult to pick an agent
+	private static final int PICK_KEY_REQUEST_CODE = 1;
 
 	// Note: The "max" value for mFontSizeSeekBar is 32. If these font values change, this value
 	// must be changed in the SeekBar's XML.
@@ -332,8 +347,16 @@ public class HostEditorFragment extends Fragment {
 					public boolean onMenuItemClick(MenuItem item) {
 						for (int i = 0; i < mPubkeyNames.size(); i++) {
 							if (mPubkeyNames.get(i).equals(item.getTitle())) {
-								mHost.setPubkeyId(Long.parseLong(mPubkeyValues.get(i)));
-								mPubkeyText.setText(mPubkeyNames.get(i));
+								long pubKeyId = Long.parseLong(mPubkeyValues.get(i));
+								mHost.setPubkeyId(pubKeyId);
+								if (pubKeyId == HostDatabase.PUBKEYID_AGENT) {
+									// Pick an agent
+									pickKeyFromAgent();
+								} else {
+									mPubkeyText.setText(mPubkeyNames.get(i));
+									// an other option that is not the agent option was selected
+									mListener.onAgentRemoved();
+								}
 								return true;
 							}
 						}
@@ -345,10 +368,19 @@ public class HostEditorFragment extends Fragment {
 		});
 
 		mPubkeyText = (TextView) view.findViewById(R.id.pubkey_text);
-		for (int i = 0; i < mPubkeyValues.size(); i++) {
-			if (mHost.getPubkeyId() == Long.parseLong(mPubkeyValues.get(i))) {
-				mPubkeyText.setText(mPubkeyNames.get(i));
-				break;
+
+		if (mHost.getPubkeyId() == HostDatabase.PUBKEYID_AGENT) {
+			AgentDatabase agentDatabase = AgentDatabase.get(getContext());
+			AgentBean agentBean = agentDatabase.findAgentById(mHost.getAuthAgentId());
+			if (agentBean != null) {
+				mPubkeyText.setText(getString(R.string.selected_Agent_res) + agentBean.getAgentAppName(getContext()) + " (" + agentBean.getKeyIdentifier() + ")");
+			}
+		} else {
+			for (int i = 0; i < mPubkeyValues.size(); i++) {
+				if (mHost.getPubkeyId() == Long.parseLong(mPubkeyValues.get(i))) {
+					mPubkeyText.setText(mPubkeyNames.get(i));
+					break;
+				}
 			}
 		}
 
@@ -480,6 +512,73 @@ public class HostEditorFragment extends Fragment {
 		setUriPartsContainerExpanded(mIsUriEditorExpanded);
 
 		return view;
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == PICK_KEY_REQUEST_CODE) {
+			if (resultCode == Activity.RESULT_OK) {
+				Bundle extras = data.getExtras();
+
+                PublicKey publicKey = getPublicKeyFromIntent(data);
+				String keyID = extras.getString(SSHAgentApiConstants.EXTRA_KEY_ID);
+				String packageName = extras.getString(SSHAgentApiConstants.EXTRA_PACKAGE_NAME);
+				String serviceName = extras.getString(SSHAgentApiConstants.EXTRA_SERVICE_NAME);
+
+				// store key info for host
+				if (publicKey != null) {
+					AgentBean agentBean = new AgentBean(keyID, publicKey.getAlgorithm(), serviceName, packageName, publicKey.getEncoded());
+					mListener.onAgentConfigured(agentBean);
+					mPubkeyText.setText(getString(R.string.selected_Agent_res) + agentBean.getAgentAppName(getContext()) + " (" + agentBean.getKeyIdentifier() + ")");
+				} else {
+					Toast.makeText(getContext(), R.string.Agent_selection_failed, Toast.LENGTH_SHORT).show();
+				}
+				Toast.makeText(getContext(), R.string.Agent_selection_successful, Toast.LENGTH_SHORT).show();
+
+			} else if (resultCode == Activity.RESULT_CANCELED) {
+				// Todo maybe report something?
+			}
+		}
+	}
+
+	private PublicKey getPublicKeyFromIntent(Intent data) {
+        byte[] rawPublicKey = data.getByteArrayExtra(SSHAgentApiConstants.EXTRA_PUBLIC_KEY);
+		String algorithm = data.getStringExtra(SSHAgentApiConstants.EXTRA_PUBLIC_KEY_ALGORITHM);
+
+        PublicKey publicKey = null;
+        X509EncodedKeySpec spec = new X509EncodedKeySpec(rawPublicKey);
+        try {
+			KeyFactory kf = KeyFactory.getInstance(algorithm);
+			publicKey = kf.generatePublic(spec);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeySpecException e) {
+            e.printStackTrace();
+        }
+
+		return publicKey;
+	}
+
+	/**
+	 * Sends an implicit intent to pick a key in an external ssh-agent
+	 */
+	private void pickKeyFromAgent() {
+		// Create a new intent that starts an available agent with the pick action
+		Intent intent = new Intent();
+		intent.setAction(SSHAgentApiConstants.ACTION_PICK_KEY);
+
+		PackageManager packageManager = getActivity().getPackageManager();
+
+		// Check if there exists any agent that can handle our pick action
+		if (intent.resolveActivity(packageManager) != null) {
+			// There is an agent which will handle the intent,
+			// so start the agent an wait for the result
+			startActivityForResult(intent, PICK_KEY_REQUEST_CODE);
+		} else {
+			// There is no agent
+			Toast.makeText(getContext(), R.string.No_SSH_Agents_installed, Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	/**
@@ -695,6 +794,8 @@ public class HostEditorFragment extends Fragment {
 	public interface Listener {
 		void onValidHostConfigured(HostBean host);
 		void onHostInvalidated();
+		void onAgentConfigured(AgentBean agentBean);
+		void onAgentRemoved();
 	}
 
 	private class HostTextFieldWatcher implements TextWatcher {
