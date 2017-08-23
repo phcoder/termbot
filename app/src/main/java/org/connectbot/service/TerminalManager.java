@@ -36,6 +36,7 @@ import org.connectbot.bean.PubkeyBean;
 import org.connectbot.data.ColorStorage;
 import org.connectbot.data.HostStorage;
 import org.connectbot.transport.TransportFactory;
+import org.connectbot.util.AgentDatabase;
 import org.connectbot.util.HostDatabase;
 import org.connectbot.util.PreferenceConstants;
 import org.connectbot.util.ProviderLoader;
@@ -91,6 +92,7 @@ public class TerminalManager extends Service implements BridgeDisconnectedListen
 	public HostStorage hostdb;
 	public ColorStorage colordb;
 	public PubkeyDatabase pubkeydb;
+	public AgentDatabase agentdb;
 
 	protected SharedPreferences prefs;
 
@@ -134,6 +136,7 @@ public class TerminalManager extends Service implements BridgeDisconnectedListen
 		hostdb = HostDatabase.get(this);
 		colordb = HostDatabase.get(this);
 		pubkeydb = PubkeyDatabase.get(this);
+		agentdb = AgentDatabase.get(this);
 
 		// load all marked pubkeys into memory
 		updateSavingKeys();

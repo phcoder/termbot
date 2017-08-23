@@ -27,16 +27,19 @@ import org.connectbot.service.PromptHelper;
 import org.connectbot.service.TerminalBridge;
 import org.connectbot.service.TerminalKeyListener;
 import org.connectbot.service.TerminalManager;
+import org.connectbot.util.ActivityResultDispatcher;
 import org.connectbot.util.PreferenceConstants;
 import org.connectbot.util.TerminalViewPager;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -731,6 +734,8 @@ public class ConsoleActivity extends AppCompatActivity implements BridgeDisconne
 					}
 				}
 			});
+
+		ActivityResultDispatcher.getInstance().registerOnStartForResultListener(onStartForResultListener);
 	}
 
 	private void addKeyRepeater(View view) {
@@ -1016,6 +1021,8 @@ public class ConsoleActivity extends AppCompatActivity implements BridgeDisconne
 		if (forcedOrientation && bound != null) {
 			bound.setResizeAllowed(false);
 		}
+
+		ActivityResultDispatcher.getInstance().unregisterOnStartForResultListener();
 	}
 
 	@Override
@@ -1036,6 +1043,8 @@ public class ConsoleActivity extends AppCompatActivity implements BridgeDisconne
 		if (forcedOrientation && bound != null) {
 			bound.setResizeAllowed(true);
 		}
+
+		ActivityResultDispatcher.getInstance().registerOnStartForResultListener(onStartForResultListener);
 	}
 
 	/* (non-Javadoc)
@@ -1094,6 +1103,7 @@ public class ConsoleActivity extends AppCompatActivity implements BridgeDisconne
 		super.onStop();
 
 		unbindService(connection);
+		ActivityResultDispatcher.getInstance().unregisterOnStartForResultListener();
 	}
 
 	@Override
@@ -1367,4 +1377,24 @@ public class ConsoleActivity extends AppCompatActivity implements BridgeDisconne
 			return (TerminalView) currentView.findViewById(R.id.terminal_view);
 		}
 	}
+
+	/**
+	 * Listener that handles a startIntentSenderForResult request
+	 */
+	private ActivityResultDispatcher.OnStartForResultListener onStartForResultListener = new ActivityResultDispatcher.OnStartForResultListener() {
+        @Override
+        public void onStartForResult(PendingIntent pendingIntent, int requestCode) {
+            try {
+                startIntentSenderForResult(pendingIntent.getIntentSender(), requestCode, null, 0, 0, 0);
+            } catch (IntentSender.SendIntentException e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        ActivityResultDispatcher.getInstance().dispatchActivityResult(requestCode, resultCode, data);
+    }
 }

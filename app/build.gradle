@@ -19,7 +19,7 @@ plugins {
 }
 
 ext {
-    supportLibraryVersion = '25.3.0'
+    supportLibraryVersion = '25.3.1'
     testRunnerVersion = '0.5'
     espressoVersion = '2.2.2'
 }
@@ -164,7 +164,8 @@ android {
 
 // Dependencies must be below the android block to allow productFlavor specific deps.
 dependencies {
-    compile 'org.connectbot:sshlib:2.2.5-SNAPSHOT'
+    compile project(':sshlib')
+    compile project(':sshagent-api')
     googleCompile 'com.google.android.gms:play-services-base:10.0.1'
     ossCompile 'org.conscrypt:conscrypt-android:1.0.0.RC2'
 

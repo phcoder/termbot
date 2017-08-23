@@ -17,6 +17,7 @@
 
 package org.connectbot.service;
 
+import org.connectbot.R;
 import org.connectbot.util.HostDatabase;
 import org.connectbot.util.PreferenceConstants;
 import org.connectbot.util.PubkeyDatabase;

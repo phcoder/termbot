@@ -14,6 +14,8 @@ import android.net.wifi.WifiManager;
 import android.net.wifi.WifiManager.WifiLock;
 import android.util.Log;
 
+import org.connectbot.R;
+
 /**
  * @author kroot
  *
@@ -70,7 +72,6 @@ public class ConnectivityReceiver extends BroadcastReceiver {
 		boolean isFailover = intent.getBooleanExtra(ConnectivityManager.EXTRA_IS_FAILOVER, false);
 
 		Log.d(TAG, "onReceived() called; noConnectivity? " + noConnectivity + "; isFailover? " + isFailover);
-
 		if (noConnectivity && !isFailover && mIsConnected) {
 			mIsConnected = false;
 			mTerminalManager.onConnectivityLost();
