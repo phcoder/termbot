@@ -190,17 +190,3 @@ def getGitDescription = { ->
         return null;
     }
 }
-
-// Insert the build number into strings.xml
-android.applicationVariants.all { variant ->
-    variant.mergeResources.doLast{
-        ext.env = System.getenv()
-        def buildNumber = getGitDescription()
-        if (buildNumber != null) {
-            File valuesFile = file("${buildDir}/intermediates/res/merged/${variant.dirName}/values/values.xml")
-            String content = valuesFile.getText('UTF-8')
-            content = content.replaceAll(/\(working copy\)/, buildNumber)
-            valuesFile.write(content, 'UTF-8')
-        }
-    }
-}
