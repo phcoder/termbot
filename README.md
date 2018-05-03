@@ -1,6 +1,19 @@
 [![Build Status](https://travis-ci.org/connectbot/connectbot.svg?branch=master)](
 https://travis-ci.org/connectbot/connectbot)
 
+Screenshots
+----------------
+<img src="https://github.com/open-keychain/connectbot/blob/agent_support_plus/screenshots/hostlist.png" width="256">
+<img src="https://github.com/open-keychain/connectbot/blob/agent_support_plus/screenshots/select_pubkey_auth_via_agent.png" width="256">
+<img src="https://github.com/open-keychain/connectbot/blob/agent_support_plus/screenshots/select_agent.png" width="256">
+<img src="https://github.com/open-keychain/connectbot/blob/agent_support_plus/screenshots/select_key.png" width="256">
+<img src="https://github.com/open-keychain/connectbot/blob/agent_support_plus/screenshots/key_selection_successful.png" width="256">
+
+<img src="https://github.com/open-keychain/connectbot/blob/agent_support_plus/screenshots/token_pin.png" width="256">
+<img src="https://github.com/open-keychain/connectbot/blob/agent_support_plus/screenshots/token_hold.png" width="256">
+<img src="https://github.com/open-keychain/connectbot/blob/agent_support_plus/screenshots/token_done.png" width="256">
+
+
 Google Play
 ----------------
 
