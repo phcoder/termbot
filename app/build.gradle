@@ -54,7 +54,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "org.sufficientlysecure.connectbot"
+        applicationId "org.sufficientlysecure.termbot"
         versionName "1.9.2"
         versionCode 19200
 
