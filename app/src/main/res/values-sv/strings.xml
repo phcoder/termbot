@@ -178,7 +178,7 @@
   <string name="no">Nej</string>
   <string name="yes">Ja</string>
   <string name="menu_colors_reset">Återställ</string>
-  <string name="app_is_running">ConnectBot är igång</string>
+  <string name="app_is_running">TermBot är igång</string>
   <string name="color_red">röd</string>
   <string name="color_green">grön</string>
   <string name="color_blue">blå</string>

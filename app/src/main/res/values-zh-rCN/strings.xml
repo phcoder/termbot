@@ -227,7 +227,7 @@
   <string name="no">不</string>
   <string name="yes">确定</string>
   <string name="menu_colors_reset">重置</string>
-  <string name="app_is_running">ConnectBot 正在运行</string>
+  <string name="app_is_running">TermBot 正在运行</string>
   <string name="color_red">红色</string>
   <string name="color_green">绿色</string>
   <string name="color_blue">蓝色</string>

@@ -220,7 +220,7 @@
   <string name="no">否</string>
   <string name="yes">是</string>
   <string name="menu_colors_reset">重設</string>
-  <string name="app_is_running">ConnectBot 執行中</string>
+  <string name="app_is_running">TermBot 執行中</string>
   <string name="color_red">紅</string>
   <string name="color_green">綠</string>
   <string name="color_blue">藍</string>

@@ -20,10 +20,10 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools"
 	xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-	<!-- Summary of what ConnectBot is; used as a short description in the Android running apps list -->
+	<!-- Summary of what TermBot is; used as a short description in the Android running apps list -->
 	<string name="app_desc">"Simple, powerful, open-source SSH client."</string>
 
-	<!-- Summary of what the ConnectBot service does; displayed in the Android running apps list -->
+	<!-- Summary of what the TermBot service does; displayed in the Android running apps list -->
 	<string name="service_desc">"Maintains SSH connections and loaded pubkeys"</string>
 	<string name="agent_service_desc">"Manages communication with key agents"</string>
 
@@ -532,7 +532,7 @@
 	<string name="menu_colors_reset">"Reset"</string>
 
 	<!-- Displayed in the notification bar that connections are active -->
-	<string name="app_is_running">"ConnectBot is running"</string>
+	<string name="app_is_running">"TermBot is running"</string>
 
 	<string name="color_red">"red"</string>
 	<string name="color_green">"green"</string>
