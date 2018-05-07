@@ -92,7 +92,7 @@ import android.widget.Toast;
 import de.mud.terminal.vt320;
 
 public class ConsoleActivity extends AppCompatActivity implements BridgeDisconnectedListener {
-	public final static String TAG = "CB.ConsoleActivity";
+	public final static String TAG = "TB.ConsoleActivity";
 
 	protected static final int REQUEST_EDIT = 1;
 

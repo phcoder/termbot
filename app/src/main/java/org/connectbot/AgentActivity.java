@@ -32,7 +32,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 public class AgentActivity extends AppCompatActivity {
-	private final static String TAG = "CB.AgentActivity";
+	private final static String TAG = "TB.AgentActivity";
 	private final static String PENDING_INTENT_SENT = "pendingIntentSent";
 
 	private AgentManager mAgentManager = null;

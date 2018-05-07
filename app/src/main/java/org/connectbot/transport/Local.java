@@ -39,7 +39,7 @@ import android.util.Log;
  *
  */
 public class Local extends AbsTransport {
-	private static final String TAG = "CB.Local";
+	private static final String TAG = "TB.Local";
 	private static final String PROTOCOL = "local";
 
 	private static final String DEFAULT_URI = "local:#Local";

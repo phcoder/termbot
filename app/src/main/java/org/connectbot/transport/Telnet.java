@@ -51,7 +51,7 @@ import de.mud.telnet.TelnetProtocolHandler;
  *
  */
 public class Telnet extends AbsTransport {
-	private static final String TAG = "CB.Telnet";
+	private static final String TAG = "TB.Telnet";
 	private static final String PROTOCOL = "telnet";
 
 	private static final int DEFAULT_PORT = 23;

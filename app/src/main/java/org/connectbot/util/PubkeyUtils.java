@@ -76,7 +76,7 @@ public class PubkeyUtils {
 		Ed25519Provider.insertIfNeeded();
 	}
 
-	private static final String TAG = "CB.PubkeyUtils";
+	private static final String TAG = "TB.PubkeyUtils";
 
 	public static final String PKCS8_START = "-----BEGIN PRIVATE KEY-----";
 	public static final String PKCS8_END = "-----END PRIVATE KEY-----";

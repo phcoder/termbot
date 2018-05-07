@@ -40,7 +40,7 @@ import android.os.IBinder;
 
 public class AgentSignatureProxy extends SignatureProxy
 		implements AgentRequest.AgentRequestResultCallback {
-	private static final String TAG = "CB.AgentSignatureProxy";
+	private static final String TAG = "TB.AgentSignatureProxy";
 
 	public static final int RESULT_CODE_CANCELED = -1;
 	public static final int RESULT_CODE_SUCCESS = 0;

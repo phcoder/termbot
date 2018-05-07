@@ -19,7 +19,7 @@ import android.util.Log;
  *
  */
 public class ConnectivityReceiver extends BroadcastReceiver {
-	private static final String TAG = "CB.ConnectivityManager";
+	private static final String TAG = "TB.ConnectivityManager";
 
 	private boolean mIsConnected = false;
 

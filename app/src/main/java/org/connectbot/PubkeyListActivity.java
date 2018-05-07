@@ -81,7 +81,7 @@ import android.widget.Toast;
  * @author Kenny Root
  */
 public class PubkeyListActivity extends AppCompatListActivity implements EventListener {
-	public final static String TAG = "CB.PubkeyListActivity";
+	public final static String TAG = "TB.PubkeyListActivity";
 
 	private static final int MAX_KEYFILE_SIZE = 32768;
 	private static final int REQUEST_CODE_PICK_FILE = 1;

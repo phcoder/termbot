@@ -69,7 +69,7 @@ import android.util.Log;
  * @author jsharkey
  */
 public class TerminalManager extends Service implements BridgeDisconnectedListener, OnSharedPreferenceChangeListener, ProviderLoaderListener {
-	public final static String TAG = "CB.TerminalManager";
+	public final static String TAG = "TB.TerminalManager";
 
 	private ArrayList<TerminalBridge> bridges = new ArrayList<TerminalBridge>();
 	public Map<HostBean, WeakReference<TerminalBridge>> mHostBridgeMap =

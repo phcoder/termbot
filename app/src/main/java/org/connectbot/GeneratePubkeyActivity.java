@@ -65,7 +65,7 @@ public class GeneratePubkeyActivity extends AppCompatActivity implements OnEntro
 		Ed25519Provider.insertIfNeeded();
 	}
 
-	public final static String TAG = "CB.GeneratePubkeyAct";
+	public final static String TAG = "TB.GeneratePubkeyAct";
 
 	private final static int[] ECDSA_SIZES = ECDSASHA2Verify.getCurveSizes();
 

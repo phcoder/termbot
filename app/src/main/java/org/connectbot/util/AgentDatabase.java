@@ -33,7 +33,7 @@ import android.database.sqlite.SQLiteException;
  */
 public class AgentDatabase extends RobustSQLiteOpenHelper {
 
-	public static final String TAG = "CB.AgentDatabase";
+	public static final String TAG = "TB.AgentDatabase";
 	public static final String DB_NAME = "agents";
 
 	public static final int DB_VERSION = 1;

@@ -41,7 +41,7 @@ import android.util.Log;
 
 
 public class AgentKeySelection implements AgentRequest.AgentRequestResultCallback {
-	public static final String TAG = "CB.AgentKeySelection";
+	public static final String TAG = "TB.AgentKeySelection";
 
 	private boolean mKeyIdSelected;
 

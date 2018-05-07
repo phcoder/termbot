@@ -50,7 +50,7 @@ import com.trilead.ssh2.KnownHosts;
  */
 public class HostDatabase extends RobustSQLiteOpenHelper implements HostStorage, ColorStorage {
 
-	public final static String TAG = "CB.HostDatabase";
+	public final static String TAG = "TB.HostDatabase";
 
 	public final static String DB_NAME = "hosts";
 	public final static int DB_VERSION = 26;

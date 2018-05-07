@@ -36,7 +36,7 @@ import de.mud.terminal.vt320;
  * @author Kenny Root
  */
 public class Relay implements Runnable {
-	private static final String TAG = "CB.Relay";
+	private static final String TAG = "TB.Relay";
 
 	private static final int BUFFER_SIZE = 4096;
 
@@ -63,7 +63,7 @@ public class Relay implements Runnable {
 	}
 
 	public void setCharset(String encoding) {
-		Log.d("ConnectBot.Relay", "changing charset to " + encoding);
+		Log.d("TermBot.Relay", "changing charset to " + encoding);
 		Charset charset;
 		if (encoding.equals("CP437"))
 			charset = new IBM437("IBM437",

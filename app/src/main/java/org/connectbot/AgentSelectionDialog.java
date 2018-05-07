@@ -43,7 +43,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class AgentSelectionDialog extends DialogFragment {
-	public static final String TAG = "CB.AgentSelectionDialog";
+	public static final String TAG = "TB.AgentSelectionDialog";
 	private static final String AGENTLIST = "agentList";
 	private static final String AGENTNAMELIST = "agentNameList";
 	private Button mSelect;

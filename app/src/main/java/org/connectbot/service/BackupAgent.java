@@ -38,7 +38,7 @@ import android.util.Log;
 public class BackupAgent extends BackupAgentHelper {
 	@Override
 	public void onCreate() {
-		Log.d("ConnectBot.BackupAgent", "onCreate called");
+		Log.d("TermBot.BackupAgent", "onCreate called");
 
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 

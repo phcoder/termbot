@@ -40,7 +40,7 @@ import de.mud.terminal.vt320;
  */
 @SuppressWarnings("deprecation") // for ClipboardManager
 public class TerminalKeyListener implements OnKeyListener, OnSharedPreferenceChangeListener {
-	private static final String TAG = "CB.OnKeyListener";
+	private static final String TAG = "TB.OnKeyListener";
 
 	// Constants for our private tracking of modifier state
 	public final static int OUR_CTRL_ON = 0x01;
@@ -176,7 +176,7 @@ public class TerminalKeyListener implements OnKeyListener, OnSharedPreferenceCha
 				return false;
 			}
 
-			//Log.i("CBKeyDebug", KeyEventUtil.describeKeyEvent(keyCode, event));
+			//Log.i("TBKeyDebug", KeyEventUtil.describeKeyEvent(keyCode, event));
 
 			if (volumeKeysChangeFontSize) {
 				if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {

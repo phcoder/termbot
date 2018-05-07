@@ -36,7 +36,7 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 
 public class AgentManager extends Service {
-	private static final String TAG = "CB.AgentManager";
+	private static final String TAG = "TB.AgentManager";
 
 	public static int AGENT_REQUEST_CODE = 1729;
 

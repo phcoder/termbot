@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 public class AgentKeySelectionRetainerFragment extends Fragment {
-	public final static String TAG = "CB.AgentKeySelectionRetainerFragment";
+	public final static String TAG = "TB.AgentKeySelectionRetainerFragment";
 
 	private AgentKeySelection mAgentKeySelection;
 

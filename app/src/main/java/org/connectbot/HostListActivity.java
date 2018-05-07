@@ -61,7 +61,7 @@ import org.connectbot.util.PreferenceConstants;
 import java.util.List;
 
 public class HostListActivity extends AppCompatListActivity implements OnHostStatusChangedListener {
-	public final static String TAG = "CB.HostListActivity";
+	public final static String TAG = "TB.HostListActivity";
 	public static final String DISCONNECT_ACTION = "org.connectbot.action.DISCONNECT";
 
 	public final static int REQUEST_EDIT = 1;
