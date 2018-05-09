@@ -27,15 +27,15 @@ Google Play
 Translations
 ----------------
 
-If you'd like to see ConnectBot translated into your language and you're
-willing to help, then head on over to
+If you'd like to see ConnectBot/TermBot translated into your language and
+you're willing to help, then head on over to
 https://translations.launchpad.net/connectbot/trunk/+pots/fortune
 
 
 Compiling
 ----------------
 
-To compile ConnectBot using gradlew, you must first specify where your
+To compile TermBot using gradlew, you must first specify where your
 Android SDK and NDK are via the local.properties file. Insert a line
 similar to the following with the full path to your SDK:
 
