@@ -544,6 +544,7 @@ public class HostEditorFragment extends Fragment implements AgentKeySelectionCal
 
 		if (providerInfo.size() == 1) {
 			onAgentSelected(providerPackage.get(0));
+			return;
 		}
 
 		List<String> providerLabel = SshAuthenticationApiUtils
