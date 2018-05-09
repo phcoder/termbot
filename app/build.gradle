@@ -67,7 +67,7 @@ android {
             abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
         }
 
-        testApplicationId "org.sufficientlysecure.connectbot.tests"
+        testApplicationId "org.sufficientlysecure.termbot.tests"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
