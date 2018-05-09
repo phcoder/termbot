@@ -21,7 +21,7 @@ Google Play
 
 [![Get it on Google Play][2]][1]
 
-  [1]: https://play.google.com/store/apps/details?id=org.connectbot
+  [1]: https://play.google.com/store/apps/details?id=org.sufficientlysecure.termbot
   [2]: https://developer.android.com/images/brand/en_generic_rgb_wo_60.png
 
 Translations
