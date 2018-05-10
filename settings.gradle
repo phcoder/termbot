@@ -1,2 +1,2 @@
 include ':app', ':sshlib'
-project(':sshlib').projectDir = new File(settingsDir, '../sshlib/sshlib')
+project(':sshlib').projectDir = new File(settingsDir, './sshlib/sshlib')
