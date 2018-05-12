@@ -1,11 +1,12 @@
 buildscript {
     repositories {
+        google()
         jcenter()
         google()
     }
 
     dependencies {
-        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.6.3'
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.8.2'
         classpath 'com.android.tools.build:gradle:3.1.2'
         classpath 'com.github.gfx.ribbonizer:ribbonizer-plugin:2.1.0'
         classpath 'com.dicedmelon.gradle:jacoco-android:0.1.3'
@@ -34,6 +35,8 @@ apply from: '../config/quality.gradle'
 apply from: '../config/translations.gradle'
 
 repositories {
+    google()
+    jcenter()
     maven {
         url 'https://oss.jfrog.org/artifactory/oss-snapshot-local/'
     }
@@ -59,7 +62,7 @@ android {
         versionCode 19201
 
         minSdkVersion 19
-        targetSdkVersion 26
+        targetSdkVersion 27
 
         vectorDrawables.useSupportLibrary = true
 
@@ -105,7 +108,10 @@ android {
             exclude group: 'com.android.support'
         }
     }
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildTypes {
         release {
             minifyEnabled true
@@ -167,13 +173,13 @@ android {
 dependencies {
     implementation project(':sshlib')
     implementation 'org.sufficientlysecure:sshauthentication-api:1.0'
-    googleImplementation 'com.google.android.gms:play-services-base:10.0.1'
-    ossImplementation 'org.conscrypt:conscrypt-android:1.0.0.RC2'
+    googleImplementation 'com.google.android.gms:play-services-base:11.8.0'
+    ossImplementation 'org.conscrypt:conscrypt-android:1.0.0.RC14'
 
     testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-core:1.10.19'
-    testImplementation 'org.assertj:assertj-core:1.7.0'
-    testImplementation('org.robolectric:robolectric:3.2.2') {
+    testImplementation 'org.mockito:mockito-core:2.13.0'
+    testImplementation 'org.assertj:assertj-core:3.9.0'
+    testImplementation('org.robolectric:robolectric:3.6.1') {
         exclude group: 'commons-logging', module: 'commons-logging'
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
     }
