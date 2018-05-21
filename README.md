@@ -1,6 +1,17 @@
 [![Build Status](https://travis-ci.org/connectbot/connectbot.svg?branch=master)](
 https://travis-ci.org/connectbot/connectbot)
 
+Special version of ConnectBot that supports the SSH Authentication API. In combination with OpenKeychain it can use OpenPGP keys.
+
+This is primarily developed to support authentication subkeys on smart cards and other security tokens over NFC and USB.
+
+[<img src="https://f-droid.org/badge/get-it-on.png"
+      alt="Get it on F-Droid"
+      height="80">](https://f-droid.org/packages/org.sufficientlysecure.termbot/)
+[<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
+      alt="Get it on Google Play"
+      height="80">](https://play.google.com/store/apps/details?id=org.sufficientlysecure.termbot)
+
 Screenshots
 ----------------
 <img align=left src="https://github.com/open-keychain/connectbot/blob/agent_support_plus/screenshots/hostlist.png" width="256">
@@ -15,14 +26,6 @@ Screenshots
 <img align=left src="https://github.com/open-keychain/connectbot/blob/agent_support_plus/screenshots/token_hold.png" width="256">
 <img src="https://github.com/open-keychain/connectbot/blob/agent_support_plus/screenshots/token_done.png" width="256">
 
-
-Google Play
-----------------
-
-[![Get it on Google Play][2]][1]
-
-  [1]: https://play.google.com/store/apps/details?id=org.sufficientlysecure.termbot
-  [2]: https://developer.android.com/images/brand/en_generic_rgb_wo_60.png
 
 Translations
 ----------------
