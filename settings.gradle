@@ -1,2 +1,3 @@
 include ':app', ':sshlib'
 project(':sshlib').projectDir = new File(settingsDir, './sshlib/sshlib')
+include ':translations'
