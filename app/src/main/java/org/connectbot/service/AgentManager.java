@@ -166,6 +166,7 @@ public class AgentManager extends Service {
 
 		Intent intent = new Intent(this, AgentActivity.class);
 		intent.putExtra(AGENT_PENDING_INTENT, pendingIntent);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);
 	}
 
